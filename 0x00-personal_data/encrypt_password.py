@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Implement a hash_password and verify_password function. hash_password expects one string argument
+Implement a hash_password and is_valid function. hash_password expects one string argument
 name password and returns a salted, hashed password, which is a byte string.
 """
 
@@ -12,3 +12,13 @@ def hash_password(password: str) -> bytes:
     Returns salted, hashed password which is a byte string
     """
     return bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+
+
+def is_valid(hashed_password: bytes, password: str) -> bool:
+    """
+    Validate that the provided password matches the hashed password.
+    """
+    if bcrypt.checkpw(password.encode(), hashed_password):
+        return True
+    else:
+        return False
