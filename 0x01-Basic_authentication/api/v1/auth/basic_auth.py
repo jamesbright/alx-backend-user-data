@@ -6,6 +6,7 @@ from base64 import b64decode, binascii
 from models.user import User
 from typing import TypeVar, List
 
+
 class BasicAuth(Auth):
     """ Basic Auth class """
     def __init__(self):
@@ -146,4 +147,3 @@ class BasicAuth(Auth):
         user_curr = self.user_object_from_credentials(mail, passwd)
 
         return user_curr
-
