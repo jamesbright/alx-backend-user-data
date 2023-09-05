@@ -17,7 +17,6 @@ class Auth:
                 excluded_paths: list of excluded path to authenticate
         """
 
-
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """
             Requires auth
@@ -31,7 +30,6 @@ class Auth:
         """
         return False
 
-    
     def authorization_header(self, request=None) -> str:
         """
             Looks at headers
@@ -43,7 +41,6 @@ class Auth:
                 The authorization header or None
         """
         return None
-    
 
     def current_user(self, request=None) -> TypeVar('User'):
         """
@@ -56,4 +53,3 @@ class Auth:
                 The user
         """
         return request
-    
