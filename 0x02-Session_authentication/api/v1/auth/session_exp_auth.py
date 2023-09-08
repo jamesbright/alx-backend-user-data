@@ -25,7 +25,7 @@ class SessionExpAuth(SessionAuth):
 
     def create_session(self, user_id: str = None) -> str:
         """ Creates a new session
-            
+
             Args:
                 user_id: ID of user
             Return:
@@ -42,10 +42,10 @@ class SessionExpAuth(SessionAuth):
 
     def user_id_for_session_id(self, session_id: str = None) -> str:
         """ Returns user id for given session Id
-            
+
             Args:
                 session_id: the Session ID
-            
+
             Return:
                 the user ID of the given session_id
         """
@@ -67,4 +67,3 @@ class SessionExpAuth(SessionAuth):
         if (creation_time + time_delta) < datetime.now():
             return None
         return session_dict["user_id"]
-       
