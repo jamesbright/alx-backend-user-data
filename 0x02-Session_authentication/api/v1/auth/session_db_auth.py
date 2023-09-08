@@ -15,8 +15,10 @@ class SessionDBAuth (SessionExpAuth):
     def create_session(self, user_id=None):
         """ Generates a session ID
         """
-        session_id = super().create_session(user_id)
         if user_id is None:
+            return None
+        session_id = super().create_session(user_id)
+        if session_id is None:
             return None
         user_session = UserSession(user_id=user_id, session_id=session_id)
         user_session.save()
