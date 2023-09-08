@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """ Basic Auth class
 """
+from os import getenv
 from flask import request
 from typing import List, TypeVar
 
@@ -69,3 +70,19 @@ class Auth:
                 The user
         """
         return request
+
+    def session_cookie(self, request=None):
+        """
+            return a cookie value from a request
+
+            Args:
+                request: current request containing cookie
+
+            Return:
+                cookie value
+        """
+        if request is None:
+            return None
+        _my_session_id = getenv("SESSION_NAME")
+        cookie_value = request.cookie.get(_my_session_id)
+        return cookie_value
