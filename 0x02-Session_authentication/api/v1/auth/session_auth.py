@@ -7,13 +7,14 @@ from typing import Dict
 from models.user import User
 from api.v1.auth.auth import Auth
 
+
 class SessionAuth(Auth):
     """ Session Auth class
     """
     def __init__(self):
         """ Constructor"""
 
-    user_id_by_session_id: Dict[str, str]= {}
+    user_id_by_session_id: Dict[str, str] = {}
 
     def create_session(self, user_id: str = None) -> str:
         """ Creates session for a user
