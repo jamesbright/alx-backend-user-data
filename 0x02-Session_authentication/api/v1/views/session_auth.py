@@ -8,6 +8,7 @@ from flask import jsonify, request
 from api.v1.views import app_views
 from models.user import User
 
+
 @app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
 def session_login() -> str:
     """ POST /api/v1/auth/session/login
@@ -32,15 +33,15 @@ def session_login() -> str:
     if not is_valid_user:
         return jsonify({"error": "no user found for this email"}), 404
 
-    user_validated = is_valid_user[0]
+    is_valid_user = is_valid_user[0]
 
-    if not user_validated.is_valid_password(user_password):
+    if not is_valid_user.is_valid_password(user_password):
         return jsonify({"error", "wrong password"}), 401
 
     from api.v1.app import auth
-    session_id = auth.create_session(user_validated.id)
+    session_id = auth.create_session(is_valid_user.id)
     cookie = getenv('SESSION_NAME')
-    user = jsonify(user_validated.to_json())
+    user_dict = jsonify(is_valid_user.to_json())
 
-    user.set_cookie(cookie, session_id)
-    return user
+    user_dict.set_cookie(cookie, session_id)
+    return user_dict
