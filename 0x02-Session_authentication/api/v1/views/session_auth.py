@@ -3,7 +3,7 @@
 processes routes for session authentification
 """
 
-from os import getenv
+from os import abort, getenv
 from flask import jsonify, request
 from api.v1.views import app_views
 from models.user import User
@@ -46,7 +46,10 @@ def session_login() -> str:
     user_dict.set_cookie(cookie, session_id)
     return user_dict
 
-@app_views.route('/auth_session/logout', methods=['DELETE'], strict_slashes=False)
+
+@app_views.route('/auth_session/logout',
+                 methods=['DELETE'],
+                 strict_slashes=False)
 def session_logout() -> str:
     """ DELETE /api/v1/auth/session/logout
     Return:
