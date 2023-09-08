@@ -3,8 +3,9 @@
     and authenticates with sessions.
 """
 import uuid
+from typing import Dict
+from models.user import User
 from api.v1.auth.auth import Auth
-
 
 class SessionAuth(Auth):
     """ Session Auth class
@@ -12,7 +13,7 @@ class SessionAuth(Auth):
     def __init__(self):
         """ Constructor"""
 
-    user_id_by_session_id = {}
+    user_id_by_session_id: Dict[str, str]= {}
 
     def create_session(self, user_id: str = None) -> str:
         """ Creates session for a user
@@ -46,4 +47,12 @@ class SessionAuth(Auth):
             return None
 
         user_id = self.user_id_by_session_id.get(session_id)
+        return user_id
+
+    def current_user(self, request=None):
+        """ Returns current user ID based on cookie value
+        """
+        cookie = self.session_cookie(request)
+        session_user_id = self.user_id_for_session_id(cookie)
+        user_id = User.get(session_user_id)
         return user_id
