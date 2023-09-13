@@ -41,4 +41,5 @@ class Auth:
         except NoResultFound:
             return False
         else:
-            return bcrypt.checkpw(bytes(password, "ascii"), user.hashed_password)
+            return bcrypt.checkpw(bytes(password, "ascii"),
+                                  user.hashed_password)
