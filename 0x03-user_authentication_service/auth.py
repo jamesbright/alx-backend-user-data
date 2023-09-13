@@ -51,7 +51,6 @@ class Auth:
             return bcrypt.checkpw(bytes(password, "ascii"),
                                   user.hashed_password)
 
-
     def create_session(self, email: str) -> str:
         """ Takes an email str argument to find a user, then
         generate a session_id
