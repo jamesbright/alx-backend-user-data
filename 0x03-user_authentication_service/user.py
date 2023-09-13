@@ -8,7 +8,7 @@ Base = declarative_base()
 
 
 class User(Base):
-    """ DB model for User 
+    """ DB model for User
     """
     __tablename__ = 'users'
 
