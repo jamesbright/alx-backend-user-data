@@ -2,7 +2,7 @@
 """ auth and password function
 """
 import bcrypt
-from uuid import uuid
+from uuid import uuid4
 from db import DB
 from user import User
 from sqlalchemy.orm.exc import NoResultFound
@@ -17,7 +17,7 @@ def _hash_password(password: str) -> str:
 def _generate_uuid() -> str:
     """ Generates and returns a string representation of a uuid
     """
-    return str(uuid.uuid4())
+    return str(uuid4())
 
 
 class Auth:
