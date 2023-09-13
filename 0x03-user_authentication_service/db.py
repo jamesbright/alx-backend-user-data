@@ -40,6 +40,9 @@ class DB:
             Return:
                 Saved user object
         """
+        if email is None or hashed_password is None:
+            return None
+        
         user = User(email=email, hashed_password=hashed_password)
         self._session.add(user)
         self._session.commit()
